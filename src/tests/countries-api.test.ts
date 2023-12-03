@@ -1,23 +1,8 @@
 import { HttpResponse, graphql } from 'msw'
 import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
-import { Countries } from '../types'
 import { getCountries } from '../utils'
-
-const mockCountries: Countries = [
-  {
-    name: 'Italy',
-    code: 'IT',
-  },
-  {
-    name: 'France',
-    code: 'FR',
-  },
-  {
-    name: 'Spain',
-    code: 'ES',
-  },
-]
+import { mockCountries } from './mocks'
 
 const listHandler = graphql.query('GetCountries', () => HttpResponse.json({ data: { countries: mockCountries } }))
 const emptyHandler = graphql.query('GetCountries', () => HttpResponse.json({ data: { countries: [] } }))
