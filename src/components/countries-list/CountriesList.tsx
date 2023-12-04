@@ -5,22 +5,32 @@ export const CountriesList: FC = () => {
   const { filteredCountries } = useStore()
 
   if (!filteredCountries.length) {
-    return <p>No countries found</p>
+    return (
+      <p className="mt-2 text-s text-red-600 text-center">
+        <span className="font-medium">No countries found.</span>
+        <br />
+        Please try another search.
+      </p>
+    )
   }
 
   return (
-    <table>
-      <thead>
+    <table className="w-full text-sm text-left text-gray-500 table-fixed">
+      <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
-          <th>Code</th>
-          <th>Name</th>
+          <th scope="col" className="px-6 py-3 w-20 lg:w-40">
+            Code
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Name
+          </th>
         </tr>
       </thead>
       <tbody>
         {filteredCountries.map(({ name, code }, index) => (
-          <tr key={index}>
-            <td>{code}</td>
-            <td>{name}</td>
+          <tr key={index} className="bg-white border-b hover:bg-gray-50">
+            <td className="px-6 py-4">{code}</td>
+            <td className="px-6 py-4">{name}</td>
           </tr>
         ))}
       </tbody>
