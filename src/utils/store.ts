@@ -9,13 +9,20 @@ export const useStore = create<Store>()((set) => ({
   currentSearch: '',
   filteredCountries: [],
   setCurrentSearch: (currentSearch) =>
-    set((state) => ({ currentSearch, filteredCountries: filterByCode(state.countries, currentSearch) })),
+    set(({ countries }) => {
+      if (!countries.length) return { currentSearch }
+      const filteredCountries = filterByCode(countries, currentSearch)
+      if (!filteredCountries.length)
+        return { currentSearch, error: 'No matching countries found. Please adjust your search.' }
+      return { currentSearch, filteredCountries, error: '' }
+    }),
   fetchCountries: async () => {
     try {
       const { countries } = await getCountries()
+      if (!countries.length) throw new Error()
       set({ countries, filteredCountries: countries, isLoading: false })
     } catch (_) {
-      set({ isLoading: false })
+      set({ isLoading: false, error: 'Failed to fetch countries. Please try again later.' })
     }
   },
 }))

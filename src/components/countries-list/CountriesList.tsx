@@ -4,16 +4,6 @@ import { useStore } from '../../utils'
 export const CountriesList: FC = () => {
   const { filteredCountries } = useStore()
 
-  if (!filteredCountries.length) {
-    return (
-      <p className="mt-2 text-s text-red-600 text-center">
-        <span className="font-medium">No countries found.</span>
-        <br />
-        Please try another search.
-      </p>
-    )
-  }
-
   return (
     <table className="w-full text-sm text-left text-gray-500 table-fixed">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
