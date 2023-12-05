@@ -6,7 +6,7 @@ export const CountriesList: FC = () => {
 
   return (
     <table className="w-full text-sm text-left text-gray-500 table-fixed">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+      <thead className="text-xs text-gray-700 uppercase bg-gray-200 ">
         <tr>
           <th scope="col" className="px-6 py-3 w-20 lg:w-40">
             Code

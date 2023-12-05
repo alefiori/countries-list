@@ -4,5 +4,5 @@ import { defineConfig, splitVendorChunkPlugin } from 'vite'
 
 export default defineConfig({
   plugins: [react(), splitVendorChunkPlugin()],
-  test: { environment: 'jsdom' },
+  test: { environment: 'jsdom', setupFiles: './src/tests/setup.ts' },
 })
